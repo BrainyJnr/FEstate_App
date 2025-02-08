@@ -1,0 +1,198 @@
+{
+  "project_info": {
+    "project_number": "263355054178",
+    "project_id": "amazingapp-8fcf1",
+    "storage_bucket": "amazingapp-8fcf1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263355054178:android:be7ad26e4f5aeb6e9e393b",
+        "android_client_info": {
+          "package_name": "com.example.amazing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263355054178-id15eq112j85bcrtkpcgiu7kfnllctti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.amazing",
+            "certificate_hash": "3c0fd88e0ac2705ac35cad9585b1b4649e3d775c"
+          }
+        },
+        {
+          "client_id": "263355054178-nis3h2ljplnm8m29i16t6um6tjcd5bmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrbIQ0wPXpXMbNNDZMLX54A5LLAS8G57Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263355054178-nis3h2ljplnm8m29i16t6um6tjcd5bmo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "263355054178-0i7vbi9fcv6ltnp2dr1mqal5j5ir7ihh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.amazing"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263355054178:android:0f82c82e5962015f9e393b",
+        "android_client_info": {
+          "package_name": "com.example.estateapp1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263355054178-nis3h2ljplnm8m29i16t6um6tjcd5bmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrbIQ0wPXpXMbNNDZMLX54A5LLAS8G57Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263355054178-nis3h2ljplnm8m29i16t6um6tjcd5bmo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "263355054178-0i7vbi9fcv6ltnp2dr1mqal5j5ir7ihh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.amazing"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263355054178:android:acbdbf7996b9420a9e393b",
+        "android_client_info": {
+          "package_name": "com.example.foodpanda_ridersapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263355054178-nis3h2ljplnm8m29i16t6um6tjcd5bmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrbIQ0wPXpXMbNNDZMLX54A5LLAS8G57Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263355054178-nis3h2ljplnm8m29i16t6um6tjcd5bmo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "263355054178-0i7vbi9fcv6ltnp2dr1mqal5j5ir7ihh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.amazing"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263355054178:android:f9f6adff15a426ce9e393b",
+        "android_client_info": {
+          "package_name": "com.example.foodpanda_sellersapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263355054178-nis3h2ljplnm8m29i16t6um6tjcd5bmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrbIQ0wPXpXMbNNDZMLX54A5LLAS8G57Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263355054178-nis3h2ljplnm8m29i16t6um6tjcd5bmo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "263355054178-0i7vbi9fcv6ltnp2dr1mqal5j5ir7ihh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.amazing"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263355054178:android:183fa19ae9e7266c9e393b",
+        "android_client_info": {
+          "package_name": "com.example.foodpanda_usersapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263355054178-nis3h2ljplnm8m29i16t6um6tjcd5bmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrbIQ0wPXpXMbNNDZMLX54A5LLAS8G57Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263355054178-nis3h2ljplnm8m29i16t6um6tjcd5bmo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "263355054178-0i7vbi9fcv6ltnp2dr1mqal5j5ir7ihh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.amazing"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,12 @@
+flutter_native_splash:
+  color: "#272727"
+  color_dark: "#272727"
+  image: assets/logo/Estate App Logo.jpg
+
+
+  android_12:
+    color: "#FFFFFF"
+    color_dark: "#272727"
+    image: assets/logo/Estate App Logo.jpg
+
+  web: false
