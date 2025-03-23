@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                   Obx(
                     (){
                       if (controller.isLoading.value)
-                        return const fVerticalProductshimmer();
+                        return const fVerticalProductshimmers();
                       if (controllers.featuredPopular.isEmpty) {
                         return Center(child: Text("No Data Found!", style: Theme
                             .of(context)
