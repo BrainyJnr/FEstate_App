@@ -1,3 +1,5 @@
+import 'package:estateapp1/common/authentication/signup/signup_screen.dart';
+import 'package:estateapp1/features/navigation/bottom_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import '../../../data/flocal_storage.dart';
 import '../login/login_screen.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -22,10 +25,37 @@ class AuthenticationRepository extends GetxController {
   @override
   void onReady() {
     FlutterNativeSplash.remove();
+    screenRedirect();
+  }
+
+  void screenRedirect() async {
+    final user = _auth.currentUser;
+
+    if (user != null) {
+      if (user.emailVerified) {
+
+        await fLocalStorage.init(user.uid);
+
+        Get.offAll(() => const BottomNavigation());
+      } else {
+        Get.offAll(() => SignupScreen());
+      }
+    } else {
+      // Local Storage
+      //if (kDebugMode) {
+      //  print("===================== GET STORAGE =====================");
+      //  print(deviceStorage.read("IsFirstTime"));
+      // }
+      deviceStorage.writeIfNull("IsFirstTime", true);
+      // Check if it´s the first time launching the app
+      deviceStorage.read("IsFirstTime") != true
+          ? Get.offAll(() => LoginScreen())
+          : Get.offAll(LoginScreen());
+    }
   }
 
 
-    /// Function to Show Relevant Screen
+  /// Function to Show Relevant Screen
 
     /* -------------------------- Email & Password sign in -----------------------------------*/
 
@@ -114,33 +144,52 @@ class AuthenticationRepository extends GetxController {
   /// [GoogleAuthentication] - GOOGLE
   Future<UserCredential?> signInWithGoogle() async {
     try {
-      // Trigger the authentication flow
+      print("Starting Google Sign-In...");
+
+      // Trigger Google Sign-In
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+      if (userAccount == null) {
+        print("Google sign-in was canceled by the user.");
+        return null; // User canceled sign-in
+      }
 
-      // Obtain the authentication flow
-      final GoogleSignInAuthentication? googleAuth =
-      await userAccount?.authentication;
+      print("User selected: ${userAccount.email}");
 
-      // Create the auth details from the request
+      // Get authentication details
+      final GoogleSignInAuthentication googleAuth =
+      await userAccount.authentication;
+
+      if (googleAuth.accessToken == null || googleAuth.idToken == null) {
+        print("Google authentication tokens are null.");
+        throw FirebaseAuthException(
+          code: "MISSING_GOOGLE_AUTH_TOKEN",
+          message: "Failed to retrieve Google authentication token.",
+        );
+      }
+
+      // Generate credential
       final credentials = GoogleAuthProvider.credential(
-          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
-      // Once signed in, return the UserCredential
-      return await _auth.signInWithCredential(credentials);
+      // Sign in with Firebase
+      final userCredential = await _auth.signInWithCredential(credentials);
+      print("Google sign-in successful: ${userCredential.user?.email}");
+
+      return userCredential;
     } on FirebaseAuthException catch (e) {
-      throw "";
+      print("FirebaseAuthException: ${e.code} - ${e.message}");
+      throw FirebaseAuthException(code: e.code, message: e.message);
     } on FirebaseException catch (e) {
-      throw "";
-    } on FormatException catch (_) {
-      throw "";
+      print("FirebaseException: ${e.plugin} - ${e.message}");
+      throw FirebaseException(plugin: e.plugin, message: e.message);
     } on PlatformException catch (e) {
-      throw "";
+      print("PlatformException: ${e.code} - ${e.message}");
+      throw PlatformException(code: e.code, message: e.message);
     } catch (e) {
-      if (kDebugMode) print("Something went wrong: $e");
-      return null;
+      print("Unexpected error: $e");
+      throw Exception("Something went wrong: $e");
     }
   }
-
   /// [FacebookAuthentication] - FACEBOOK
 
 /* ---------------------------- ./end Federated identity & social sign-in -----------------------*/

@@ -1,11 +1,13 @@
 import 'package:estateapp1/common/containers/frounded_container.dart';
 import 'package:estateapp1/common/utilis/colors.dart';
 import 'package:estateapp1/common/utilis/sizes.dart';
+import 'package:estateapp1/features/card/controller/recent_controller.dart';
 import 'package:estateapp1/features/card/wdigets/festae_location.dart';
 import 'package:estateapp1/features/card/wdigets/festate_favorite_icon.dart';
 import 'package:estateapp1/features/card/wdigets/festate_price.dart';
 import 'package:estateapp1/features/card/wdigets/festate_titletext.dart';
 import 'package:estateapp1/features/card/wdigets/fshadow_style.dart';
+import 'package:estateapp1/features/model/recent_model.dart';
 import 'package:estateapp1/function/fhelper_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,13 +18,16 @@ import '../../../common/utilis/images.dart';
 import '../../screens/frecent_posted_detailscreen.dart';
 
 class fRecentPosted extends StatelessWidget {
-  const fRecentPosted({super.key});
+  const fRecentPosted({super.key, required this.recent});
+
+  final RecentModel recent;
 
   @override
   Widget build(BuildContext context) {
+    final controller = RecentController.instance;
     final dark = fHelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () =>  Get.to(frecentPostedDetailscreen()),
+      onTap: () =>  Get.to(frecentPostedDetailscreen(recent: recent)),
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 10,right: 10),
@@ -44,9 +49,9 @@ class fRecentPosted extends StatelessWidget {
                   child: Stack(
                     children: [
                       /// -- Thumbnail Image
-                      const fRoundedImage(fit: BoxFit.cover,
-                        imageUrl: fImages.Estate5,
-                        applyImageRadius: true,
+                       fRoundedImage(fit: BoxFit.cover,
+                        imageUrl: recent.image,
+                        applyImageRadius: true,isNetworkImage: true,
                       ),
                     ],
                   ),
@@ -58,15 +63,16 @@ class fRecentPosted extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    fEstateTitleText(title: "Rose garden apartment",smallSize: true,),
+                    fEstateTitleText(title: recent.title,smallSize: true,),
                     festatelocation(dark: dark,
                       isLarge: true,
-                      title: "London mongopak",
+                      title: recent.location,
                     ),                    Row(
                       children: [
-                       estateprices(
-                       price:  "100"
-                      ),SizedBox(width: 75),
+                          estateprices(
+                         price:  controller.getRecentPrice(recent)
+                                               ),
+                       SizedBox(width: 65),
                   fcircular_favorite_icon(), // Your favorite icon widget
 
                   ],

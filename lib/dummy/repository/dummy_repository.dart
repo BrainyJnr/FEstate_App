@@ -9,18 +9,18 @@ import '../../data/ffirebase_storage.dart';
 class DummyRepository extends GetxController {
   final _db = FirebaseFirestore.instance;
 
-  Future<void> uploadDummydata(List<PopularModel> PopularEstate) async {
+  Future<void> uploadDummydata(List<RecentModel> RecentEstates) async {
     try {
       final storage = Get.put(fFirebaseStorageService());
 
-      for (var item in PopularEstate) {
+      for (var item in RecentEstates) {
         final file = await storage.getImageDataFromAssets(item.image);
 
-        final url = await storage.uploadImageData("PopularEstate", file, item.title);
+        final url = await storage.uploadImageData("RecentEstates", file, item.title);
 
         item.image = url;
 
-        await _db.collection("PopularEstate").doc(item.id).set(item.toJson());
+        await _db.collection("RecentEstates").doc(item.id).set(item.toJson());
       }
     } on FirebaseException catch (e) {
       throw "========$e=======here";

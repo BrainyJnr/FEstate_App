@@ -7,7 +7,7 @@ class estateprices extends StatelessWidget {
   const estateprices({
     super.key,
 
-    this.currencySign = "\$",
+    this.currencySign = "",
     required this.price,
     this.maxLines = 1,
     this.isLarge = false,
@@ -39,7 +39,7 @@ class Popularestateprices extends StatelessWidget {
   const Popularestateprices({
     super.key,
 
-    this.currencySign = "\$",
+    this.currencySign = "",
     required this.price,
     this.maxLines = 1,
     this.isLarge = false,

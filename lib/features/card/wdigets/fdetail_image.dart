@@ -1,23 +1,31 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:estateapp1/app.dart';
 import 'package:estateapp1/common/containers/appbar/fAppBar.dart';
 import 'package:estateapp1/common/containers/appbar/fHome_AppBar.dart';
 import 'package:estateapp1/common/utilis/images.dart';
 import 'package:estateapp1/data/device_utility.dart';
+import 'package:estateapp1/features/card/controller/recent_controller.dart';
 import 'package:estateapp1/features/card/wdigets/festae_location.dart';
 import 'package:estateapp1/features/card/wdigets/festate_titletext.dart';
+import 'package:estateapp1/features/model/recent_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../function/fhelper_function.dart';
+import '../../image_controllers/recent_image_controller.dart';
 import 'festate_price.dart';
 
 class DetailImage extends StatelessWidget {
-  const DetailImage({super.key});
+  const DetailImage({super.key, required this.recent});
+
+  final RecentModel recent;
 
   @override
   Widget build(BuildContext context) {
     final dark = fHelperFunctions.isDarkMode(context);
+    final controlles = RecentController.instance;
+    final RecentImageController controller = Get.find();
     return Stack(children: [
       Column(
         children: [
@@ -36,13 +44,20 @@ class DetailImage extends StatelessWidget {
                       bottomLeft: Radius.circular(40),
                       bottomRight: Radius.circular(40),
                     ),
-                    child: Image.asset(
-                      fImages.Estate5,
-                      fit: BoxFit.cover,
-                      height: 320,
-                      width: fDeviceUtilis.getScreenWidth(context),
-                      alignment: Alignment.topCenter,
-                    ),
+                      child: Obx(() {
+                        final imageUrl = controller.selectedRecentEstate.value;
+                        return CachedNetworkImage(
+                          imageUrl: imageUrl,
+                          fit: BoxFit.cover,
+                          height: 340,
+                          width: fDeviceUtilis.getScreenWidth(context),
+                          progressIndicatorBuilder: (_, __, downloadProgress) =>
+                              CircularProgressIndicator(
+                                value: downloadProgress.progress,
+                                color: Colors.white,
+                              ),
+                        );
+                      })
                   ),
                 ],
               ),
@@ -55,11 +70,11 @@ class DetailImage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     fEstateTitleText(
-                      title: "Gardentop apartment",
+                      title: recent.title,
                       isLarge: true,
                     ),
                     estateprices(
-                      price: "3000",
+                        price:  controlles.getRecentPrice(recent)
                     ),
                   ],
                 ),
@@ -74,7 +89,7 @@ class DetailImage extends StatelessWidget {
                       children: [
                         festatelocation(dark: dark,
                           isLarge: true,
-                          title: "London mongopak",
+                          title: recent.location ?? "",
                         ),                        Row(
                           children: [
                             Icon(

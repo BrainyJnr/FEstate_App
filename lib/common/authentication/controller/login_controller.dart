@@ -97,11 +97,11 @@ class LoginController extends GetxController {
       fFullScreenLoader.stopLoading();
 
       // Redirect
-      //AuthenticationRepository.instance.screenRedirect();
+      AuthenticationRepository.instance.screenRedirect();
     }catch (e) {
       // Remove Loader
       fFullScreenLoader.stopLoading();
-      fLoaders.errorSnackBar(title: "Oh Snap", message: e.toString());
+      fLoaders.errorSnackBar(title: "Oh Snapssssss", message: e.toString());
     }
   }
 

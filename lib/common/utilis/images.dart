@@ -12,6 +12,9 @@ class fImages {
   static const String Animation1 =
       "assets/images/jsonlottiefile/Animation - 1717608048132.gif";
 
+  // -- Owner Image
+  static const String OwnerImage = "assets/owner/WhatsApp Image 2025-02-08 at 3.49.59 PM.jpeg";
+
   // -- Estates
   static const String Estate1 = "assets/images/House1.jpeg";
   static const String Estate2 = "assets/images/House2.jpg";

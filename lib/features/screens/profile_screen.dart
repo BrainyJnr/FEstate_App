@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../common/authentication/controller/user_controller.dart';
 import '../../common/authentication/repostries/auth_repository.dart';
 import '../../common/utilis/sizes.dart';
 import '../../common/widgets/headings_MenuTiles/fsection_heading.dart';
@@ -20,60 +21,63 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controllerUpload = Get.put(DummyRepository());
     final controller = Get.put(AuthenticationRepository());
+    final controllers = UserController.instance;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text("Profile"),
       ),
       body: Column(
           children: [
-            UserProfile(),
-            const Padding(padding: EdgeInsets.only(left: 12)),
-
-            const SizedBox(
-              height: 7,
-              width: 10,
-            ),
-
-            fSectionHeading(title: "My Account", showActionButton: false,),
-
-            const SizedBox(
-              height: fSizes.spaceBtwItems,
-            ),
-
-            fSettingsMenuTile(
-              title: "My Profile",
-              icon: Iconsax.user,
-              onTap: ()  =>  Get.to(ChangeName()),
-              trailing: const Icon(
-                Iconsax.arrow_right_34,
-              ),),
-
-            SizedBox(height: 5,),
-
-            fSectionHeading(title: "More", showActionButton: false,),
-
-            fSettingsMenuTile(
-              title: "Support",
-              icon: Iconsax.call,
-              onTap: () {
-                controllerUpload.uploadDummydata(fDummyData.PopularEstates);
-
-              },
-              trailing: const Icon(
-                Iconsax.arrow_right_34,
-              ),),
-
-            InkWell(
-                child: fSettingsMenuTile(
-                  icon: Iconsax.logout,
-                  onTap: () {
-                    controller.logout();
-                  },
-                  title: "Log out",
-                  trailing: const Icon(Iconsax.arrow_right_34),
-                ))
-          ]),
+        UserProfile(),
+        const Padding(padding: EdgeInsets.only(left: 12)),
+        const SizedBox(
+          height: 7,
+          width: 10,
+        ),
+        fSectionHeading(
+          title: "My Account",
+          showActionButton: false,
+        ),
+        const SizedBox(
+          height: fSizes.spaceBtwItems,
+        ),
+        fSettingsMenuTile(
+          title: "My Profile",
+          icon: Iconsax.user,
+          onTap: () => Get.to(ChangeName()),
+          trailing: const Icon(
+            Iconsax.arrow_right_34,
+          ),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        fSectionHeading(
+          title: "More",
+          showActionButton: false,
+        ),
+        fSettingsMenuTile(
+          title: "Support",
+          icon: Iconsax.call,
+          onTap: () {
+            // controllerUpload.uploadDummydata(fDummyData.RecentEstates);
+          },
+          trailing: const Icon(
+            Iconsax.arrow_right_34,
+          ),
+        ),
+        InkWell(
+            child: fSettingsMenuTile(
+          icon: Iconsax.logout,
+          onTap: () {
+            controller.logout();
+          },
+          title: "Log out",
+          trailing: const Icon(Iconsax.arrow_right_34),
+        ))
+      ]),
     );
   }
 }

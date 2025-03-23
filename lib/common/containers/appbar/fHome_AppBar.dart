@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import '../../../features/icon/favorite_icon.dart';
 import '../../../features/shimmers/fshimmer_effect.dart';
 import '../../authentication/controller/user_controller.dart';
+import '../../image_widgets/fcircular_image.dart';
 import '../../utilis/colors.dart';
+import '../../utilis/images.dart';
 import '../../utilis/texts.dart';
 import 'fAppBar.dart';
 
@@ -51,17 +53,15 @@ class fHomeAppBar extends StatelessWidget {
                 ),
                 Container(
                   child: Container(
-                    child: ClipOval(
-                      // Makes the image circular
-                      child: SizedBox(
-                        width: 100, // Set your preferred size
-                        height: 100,
-                        child: Image.asset(
-                          "assets/icon_profile/Profile_Logo.jpg",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                  child:   Obx(() {
+                      final networkImage = controller.user.value.profilePicture;
+                      final image = networkImage.isNotEmpty ? networkImage : fImages.PopularEstates8;
+                      return controller.imageUploading.value
+                          ? const fShimmerEffect(width: 80, height: 80, radius: 80)
+                          : fCircular_Images(
+                          fit: BoxFit.cover,backgroundColor: Colors.brown,
+                          image: image, width: 60,height: 55, isNetworkImage: networkImage.isNotEmpty);
+                    }),
                   ),
                   width: 40,
                   height: 40,

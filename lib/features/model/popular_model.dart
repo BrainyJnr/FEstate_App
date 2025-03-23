@@ -5,20 +5,23 @@ class PopularModel {
   String image;
   double? price;
   String title;
-  String? location;
-  String? description;
+  String location;
+  String description;
+  String? phoneNumber;
 
   PopularModel ({
 
     required this.image,
     required this.id,
     required this.title,
-    this.location,
+    required this.location,
     this.price,
-    this.description,
+    required this.description,
+    this.phoneNumber,
   });
 
   static PopularModel empty() => PopularModel(
+    description: "",
     image: "",
     id: "",
     title: "",
@@ -35,6 +38,7 @@ class PopularModel {
       "Location": location,
       "Price": price,
       "Description": description,
+      "PhoneNumber": phoneNumber,
     };
   }
 
@@ -48,6 +52,7 @@ class PopularModel {
       title: data["Title"],
       location: data["Location"],
       image: data["Image"],
+      phoneNumber: data["PhoneNumber"],
       price: double.parse((data["Price"] ?? 0.0).toString()),
       description: data["Description"],
       //isAvailable: data['isAvailable'] == true,
@@ -64,6 +69,7 @@ class PopularModel {
       image: data["Image"],
       price: double.parse((data["Price"] ?? 0.0).toString()),
       description: data["Description"],
+      phoneNumber: data["PhoneNumber"],
       location: data["Location"],
       //isAvailable: data['isAvailable'] == true, // Adjusted this line
 
@@ -73,8 +79,9 @@ class PopularModel {
   factory PopularModel.fromData(Map<String, dynamic> data) {
     return PopularModel(
       title: data['Title'] ?? '',
+      description: data['Description'] ?? '',
       price: data['Price']?.toDouble() ?? 0.0,
-      image: data["Image"], id: "",
+      image: data["Image"], id: "", location: data["Location"] ?? "",
       // Parse other fields
     );
   }

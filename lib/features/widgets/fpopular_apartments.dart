@@ -1,3 +1,5 @@
+import 'package:estateapp1/features/card/controller/popular_controller.dart';
+import 'package:estateapp1/features/model/popular_model.dart';
 import 'package:estateapp1/features/screens/fpopular_apartment_detailscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,13 +16,16 @@ import '../card/wdigets/festate_price.dart';
 import '../card/wdigets/festate_titletext.dart';
 
 class fPopularApartments  extends StatelessWidget {
-  const fPopularApartments({super.key});
+  const fPopularApartments({super.key, required this.popular});
+
+  final PopularModel popular;
 
   @override
   Widget build(BuildContext context) {
+    final controller = PopularController.instance;
     final dark = fHelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () =>  Get.to(fPopularApartmentDetailScreen()),
+      onTap: () =>  Get.to(fPopularApartmentDetailScreen(popular: popular,)),
       child: SizedBox(
         width: 100,
         height: 90,
@@ -54,7 +59,8 @@ class fPopularApartments  extends StatelessWidget {
                       width: 85,
                       height: 100,
                       fit: BoxFit.cover,
-                      image: "assets/images/House1.jpeg",
+                      image: popular.image,
+                      applyImageRadius: true,isNetworkImage: true,
                     ),
                   ),
                   Column(
@@ -65,7 +71,7 @@ class fPopularApartments  extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(top: fSizes.sm, left: fSizes.sm),
                           child: fPopularEstateTitleText(
-                            title: "Rose garden apartment",
+                            title: popular.title,
                           ),
                         ),
                       ),
@@ -74,7 +80,7 @@ class fPopularApartments  extends StatelessWidget {
                         padding: EdgeInsets.only(right: 74),
                         child:  festatelocation(dark: dark,
                           isLarge: true,
-                          title: "London mongopak",
+                          title: popular.location,
                         ),
 
                       ),
@@ -82,7 +88,8 @@ class fPopularApartments  extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(right: 150),
                         child: Popularestateprices(
-                          price: "100",
+                          price:  controller.getPopularPrice(popular)
+                        ,
                         ),
                       ),
                     ],

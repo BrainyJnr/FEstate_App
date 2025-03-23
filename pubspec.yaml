@@ -110,7 +110,9 @@ flutter:
   assets:
     - assets/images/
     - assets/
+    - assets/owner/
     - assets/logo/
+    - assets/
     - assets/images/jsonlottiefile/Animation - 1717608048132.gif
     - assets/icon_profile/Profile_Logo.jpg
   #   - images/a_dot_ham.jpeg

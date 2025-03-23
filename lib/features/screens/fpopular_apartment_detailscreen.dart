@@ -1,18 +1,30 @@
+import 'package:estateapp1/app.dart';
 import 'package:estateapp1/common/widgets/headings_MenuTiles/fsection_heading.dart';
+import 'package:estateapp1/features/image_controllers/popular_image_controller.dart';
+import 'package:estateapp1/features/model/popular_model.dart';
+import 'package:estateapp1/features/model/recent_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:readmore/readmore.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../card/wdigets/fpopular_detail_image.dart';
 
 class fPopularApartmentDetailScreen extends StatelessWidget {
-  const fPopularApartmentDetailScreen({super.key});
+  const fPopularApartmentDetailScreen({super.key, required this.popular});
+
+  final PopularModel popular;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(PopularImageController());
+    final images = controller.getPopularImages(popular);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            PopularDetailImage(),
+            PopularDetailImage(popular: popular,),
 
             SizedBox(height: 8,),
             fSectionHeading(title: "Discription",showActionButton: false,textColor: Colors.blue,),
@@ -20,7 +32,7 @@ class fPopularApartmentDetailScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 15),
               child: ReadMoreText(
-                "Welcome to a refined living experience in this elegant estate apartment, designed for comfort, convenience, and style. Nestled in a serene and secure environment, this residence offers spacious interiors, premium finishes, and breathtaking views that redefine urban luxury",
+                popular.description ?? "",
                 trimLines: 2,
                 trimMode: TrimMode.Line,
                 trimCollapsedText: "Show more",
@@ -64,9 +76,21 @@ class fPopularApartmentDetailScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                         ),
-                        child: Icon(Icons.phone, color: Colors.blue),
-                      ),
-                    ],
+                       child:    IconButton(
+                            onPressed: () async {
+                              if (popular.phoneNumber != null && popular.phoneNumber!.isNotEmpty) {
+                                final Uri phoneUri = Uri(scheme: "tel", path: popular.phoneNumber);
+                                if (await canLaunchUrl(phoneUri)) {
+                                  await launchUrl(phoneUri);
+                                } else {
+                                  print("Could not launch dialer");
+                                }
+                              } else {
+                                print("Phone number is missing");
+                              }
+                            },
+                            icon: Icon(Icons.phone, color: Colors.blue),
+                          )                      )],
                   ),
                 )
 
