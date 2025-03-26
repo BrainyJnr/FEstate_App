@@ -30,7 +30,7 @@ class fRecentPosted extends StatelessWidget {
       onTap: () =>  Get.to(frecentPostedDetailscreen(recent: recent)),
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 10,right: 10),
+          padding: EdgeInsets.only(left: 5,right: 5),
           child: Container(
             width: 148,
             padding: EdgeInsets.all(1),

@@ -100,11 +100,10 @@ class fGridlayout extends StatelessWidget {
       shrinkWrap: true,
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisExtent: mainAxisCount,
-        mainAxisSpacing: fSizes.gridViewSpacing,
-        crossAxisSpacing: fSizes.gridViewSpacing,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        mainAxisExtent: 200,
+        crossAxisSpacing: 3.0,
+        crossAxisCount: 2, mainAxisSpacing: 10,
       ),
       itemBuilder: itemBuilder,
     );

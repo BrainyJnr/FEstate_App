@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:estateapp1/app.dart';
 import 'package:estateapp1/common/containers/appbar/fHome_AppBar.dart';
 import 'package:estateapp1/common/containers/fSearch_container.dart';
 import 'package:estateapp1/common/utilis/sizes.dart';
 import 'package:estateapp1/common/widgets/headings_MenuTiles/fsection_heading.dart';
 import 'package:estateapp1/features/card/controller/popular_controller.dart';
+import 'package:estateapp1/features/screens/all/screens/all_recents.dart';
 import 'package:estateapp1/features/shimmers/fvertical_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +18,7 @@ import '../card/wdigets/fRecentPosted.dart';
 import '../card/wdigets/ffavorite_listview_seperated.dart';
 import '../favorite_designs/favorite_design_screen.dart';
 import '../widgets/fpopular_apartments.dart';
+import 'all/screens/all_apartments.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -49,7 +52,11 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 10,),
 
                   fSectionHeading(title: "Recent Posted",
-                    showActionButton: true,
+                    showActionButton: true,onPressed: () => Get.to(() => AllRecentApartments(title: "Recent Apartment",
+                    query: FirebaseFirestore.instance.collection("RecentEstates").limit(6),
+                      futureMethod: controller.FetchAllRecents(),
+
+                    )),
                     buttonTitle: "View all",),
 
                   /// -- Popular Estates
@@ -78,7 +85,10 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   fSectionHeading(title: "Popular apartment",
-                    showActionButton: true,
+                    showActionButton: true,onPressed: () => Get.to(() => AllPopularApartments(title: "Popular apartment",
+                      query: FirebaseFirestore.instance.collection("PopularEstate").limit(6),
+                      futureMethod: controllers.FetchAllProducts(),
+                    )),
                     buttonTitle: "View all",),
 
                   Obx(

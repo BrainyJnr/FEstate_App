@@ -32,6 +32,18 @@ class RecentController extends GetxController {
     }
   }
 
+  Future<List<RecentModel>> FetchAllRecents() async {
+    try {
+
+      final popular = await productRepository.getAllRecent();
+      return popular;
+    } catch (e) {
+      fLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
+      return [];
+    }
+  }
+
+
   String getRecentPrice(RecentModel recent) {
     double recentPrice = recent.price ?? 0;
     if (recentPrice == 0) {

@@ -33,6 +33,18 @@ class PopularController extends GetxController {
     }
   }
 
+  Future<List<PopularModel>> FetchAllProducts() async {
+    try {
+
+      final popular = await popularRepository.getAllPopularProducts();
+      return popular;
+    } catch (e) {
+      fLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
+      return [];
+    }
+  }
+
+
   String getPopularPrice(PopularModel recent) {
     double recentPrice = recent.price ?? 0;
     if (recentPrice == 0) {

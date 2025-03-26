@@ -29,4 +29,44 @@ class PopularRepository extends GetxController {
 
     }
   }
+
+  Future<List<PopularModel>> getAllPopularProducts() async {
+    try {
+      final snapshot = await _db.collection("PopularEstate").get();
+      return snapshot.docs.map((e) => PopularModel.fromSnapshot(e)).toList();
+
+    } on FirebaseAuthException catch (e) {
+      throw "";
+    } on FirebaseException catch (e) {
+      throw "";
+    } on FormatException catch (_) {
+      throw "";
+    } on PlatformException catch (_) {
+      throw "";
+    } catch (e) {
+      throw "Something went wrong. Please try again";
+
+    }
+  }
+
+  Future<List<PopularModel>> fetchPopularApartmentsByQuery(Query query) async {
+    try {
+
+      final querySnapshot = await query.get();
+      final List<PopularModel> popularList = querySnapshot.docs.map((doc) => PopularModel.fromQuerySnapshot(doc)).toList();
+      return popularList;
+    } on FirebaseAuthException catch (e) {
+      throw "";
+    } on FirebaseException catch (e) {
+      throw "";
+    } on FormatException catch (_) {
+      throw "";
+    } on PlatformException catch (_) {
+      throw "";
+    } catch (e) {
+      throw "Something went wrong. Please try again";
+
+    }
+  }
+
 }

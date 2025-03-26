@@ -29,4 +29,46 @@ class ProductRepository extends GetxController {
 
      }
    }
+
+
+  Future<List<RecentModel>> getAllRecent() async {
+    try {
+      final snapshot = await _db.collection("RecentEstates").get();
+      return snapshot.docs.map((e) => RecentModel.fromSnapshot(e)).toList();
+
+    } on FirebaseAuthException catch (e) {
+      throw "";
+    } on FirebaseException catch (e) {
+      throw "";
+    } on FormatException catch (_) {
+      throw "";
+    } on PlatformException catch (_) {
+      throw "";
+    } catch (e) {
+      throw "Something went wrong. Please try again";
+
+    }
+  }
+
+
+  Future<List<RecentModel>> fetchRecentByQuery(Query query) async {
+    try {
+
+      final querySnapshot = await query.get();
+      final List<RecentModel> popularList = querySnapshot.docs.map((doc) => RecentModel.fromQuerySnapshot(doc)).toList();
+      return popularList;
+    } on FirebaseAuthException catch (e) {
+      throw "";
+    } on FirebaseException catch (e) {
+      throw "";
+    } on FormatException catch (_) {
+      throw "";
+    } on PlatformException catch (_) {
+      throw "";
+    } catch (e) {
+      throw "Something went wrong. Please try again";
+
+    }
+  }
+
 }
