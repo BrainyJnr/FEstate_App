@@ -6,9 +6,8 @@ class festatelocation extends StatelessWidget {
     required this.title,
     this.smallSize = false,
     this.maxLines = 2,
-    this.textAlign = TextAlign.left,  this.isLarge = false,required this.dark,  });
+    this.textAlign = TextAlign.left,  this.isLarge = false,  });
 
-  final bool dark;
   final String title;
   final bool smallSize;
   final int maxLines;
@@ -25,9 +24,9 @@ class festatelocation extends StatelessWidget {
         ),
         SizedBox(width: 5),
         Text(
-          "London mongopak",
+          title,
           style: Theme.of(context).textTheme.labelSmall!.apply(
-              color: dark ? Colors.white : Colors.black.withOpacity(0.5)),
+              color: Colors.black.withOpacity(0.5)),
         ),
       ],
     );

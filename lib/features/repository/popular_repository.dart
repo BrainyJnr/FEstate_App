@@ -69,4 +69,39 @@ class PopularRepository extends GetxController {
     }
   }
 
+  Future<List<PopularModel>> getFavoritePopularEstate(List<String> popularId) async {
+    try {
+      // Fetch from "Foods" collection
+      final foodSnapshot = await _db
+          .collection("PopularEstate")
+          .where(FieldPath.documentId, whereIn: popularId)
+          .get();
+
+      // Fetch from "Drinks" collection
+      final CrunchesSnapshot = await _db
+          .collection("PopularEstate")
+          .where(FieldPath.documentId, whereIn: popularId)
+          .get();
+
+      // Map both snapshots to AllModel and combine them
+      final foodItems = foodSnapshot.docs
+          .map((querySnapshot) => PopularModel.fromSnapshot(querySnapshot))
+          .toList();
+
+      final drinkItems = CrunchesSnapshot.docs
+          .map((querySnapshot) => PopularModel.fromSnapshot(querySnapshot))
+          .toList();
+
+      // Combine the two lists
+      return [...foodItems, ...drinkItems];
+    } on FirebaseException catch (e) {
+      throw "Error: $e";
+    } on PlatformException catch (e) {
+      throw "Platform Error: $e";
+    } catch (e) {
+      throw "Unknown Error: $e";
+    }
+  }
+
+
 }

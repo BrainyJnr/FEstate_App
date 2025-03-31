@@ -87,9 +87,8 @@ class PopularDetailImage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         festatelocation(
-                          dark: dark,
                           isLarge: true,
-                          title: popular.description,
+                          title: popular.location,
                         ),
                         Row(
                           children: [

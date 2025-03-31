@@ -78,7 +78,7 @@ class fPopularApartments  extends StatelessWidget {
                       SizedBox(height: 3),
                       Padding(
                         padding: EdgeInsets.only(right: 74),
-                        child:  festatelocation(dark: dark,
+                        child:  festatelocation(
                           isLarge: true,
                           title: popular.location,
                         ),
@@ -100,7 +100,7 @@ class fPopularApartments  extends StatelessWidget {
               Positioned(
                 right: 10, // Distance from the right
                 top: 10, // Distance from the bottom
-                child: fcircular_favorite_icon(), // Your favorite icon widget
+                child: fcircular_favorite_icon(estatesId: popular.id,), // Your favorite icon widget
               ),
             ],
           ),

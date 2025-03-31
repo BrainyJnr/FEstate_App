@@ -16,7 +16,7 @@ import '../../common/containers/fprimaryheader_Container.dart';
 import '../card/controller/recent_controller.dart';
 import '../card/wdigets/fRecentPosted.dart';
 import '../card/wdigets/ffavorite_listview_seperated.dart';
-import '../favorite_designs/favorite_design_screen.dart';
+import '../card/wdigets/favorite_widget.dart';
 import '../widgets/fpopular_apartments.dart';
 import 'all/screens/all_apartments.dart';
 

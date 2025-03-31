@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../model/all_model.dart';
+
 class ProductRepository extends GetxController {
   static ProductRepository get instance => Get.find();
 
@@ -70,5 +72,40 @@ class ProductRepository extends GetxController {
 
     }
   }
+
+  Future<List<AllModel>> getFavoriteRecentEstate(List<String> productIds) async {
+    try {
+      // Fetch from "Foods" collection
+      final foodSnapshot = await _db
+          .collection("RecentEstates")
+          .where(FieldPath.documentId, whereIn: productIds)
+          .get();
+
+      // Fetch from "Drinks" collection
+      final CrunchesSnapshot = await _db
+          .collection("PopularEstate")
+          .where(FieldPath.documentId, whereIn: productIds)
+          .get();
+
+      // Map both snapshots to AllModel and combine them
+      final foodItems = foodSnapshot.docs
+          .map((querySnapshot) => AllModel.fromSnapshot(querySnapshot))
+          .toList();
+
+      final drinkItems = CrunchesSnapshot.docs
+          .map((querySnapshot) => AllModel.fromSnapshot(querySnapshot))
+          .toList();
+
+      // Combine the two lists
+      return [...foodItems, ...drinkItems];
+    } on FirebaseException catch (e) {
+      throw "Error: $e";
+    } on PlatformException catch (e) {
+      throw "Platform Error: $e";
+    } catch (e) {
+      throw "Unknown Error: $e";
+    }
+  }
+
 
 }

@@ -64,7 +64,7 @@ class fRecentPosted extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     fEstateTitleText(title: recent.title,smallSize: true,),
-                    festatelocation(dark: dark,
+                    festatelocation(
                       isLarge: true,
                       title: recent.location,
                     ),                    Row(
@@ -73,7 +73,8 @@ class fRecentPosted extends StatelessWidget {
                          price:  controller.getRecentPrice(recent)
                                                ),
                        SizedBox(width: 65),
-                  fcircular_favorite_icon(), // Your favorite icon widget
+                  fcircular_favorite_icon(
+                    estatesId: recent.id,), // Your favorite icon widget
 
                   ],
                 ),]))

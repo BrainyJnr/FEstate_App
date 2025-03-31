@@ -47,6 +47,8 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   shimmer: ^3.0.0
   readmore: ^3.0.0
+  shared_preferences: ^2.2.2 # Use the latest version
+
 
 
   # Firebase

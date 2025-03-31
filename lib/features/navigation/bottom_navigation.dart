@@ -1,3 +1,5 @@
+import 'package:estateapp1/features/card/wdigets/favorite_widget.dart';
+import 'package:estateapp1/features/favorite_designs/favorite_design_screen.dart';
 import 'package:estateapp1/features/screens/favorite_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,5 +50,5 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
 
-  final screens = [const HomeScreen(), const FavoriteScreen(), const SearchScreen(), const ProfileScreen(),];
+  final screens = [const HomeScreen(), const FavoriteWidget(), const SearchScreen(), const ProfileScreen(),];
 }

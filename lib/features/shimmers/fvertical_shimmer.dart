@@ -16,14 +16,14 @@ class fVerticalProductshimmer extends StatelessWidget {
     return fGridlayout(
         itemCount: itemCount,
         itemBuilder: (_, __) => SizedBox(
-              width: 180,
+              width: 180,height: 100,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   /// Image
                   fShimmerEffect(
                     width: 180,
-                    height: 180,
+                    height: 140,
                   ),
                   SizedBox(
                     height: fSizes.spaceBtwItems,
@@ -137,5 +137,51 @@ class fGridlayouts extends StatelessWidget {
           right: 16.0, // Right space
           bottom: 16.0, // Bottom space
         ));
+  }
+}
+
+
+class fCategoryShimmer extends StatelessWidget {
+  const fCategoryShimmer({
+    super.key,
+    this.itemCount = 3,
+  });
+
+  final int itemCount;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        height: 110,
+        width: 320,
+        child: ListView.separated(
+            itemCount: itemCount,
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            separatorBuilder: (_, __) =>  SizedBox(
+              height: fSizes.spaceBtwItems,
+            ),
+            itemBuilder: (_, __) {
+              return  Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  /// Image
+                  fShimmerEffect(
+                      width: 400,
+                      height: 200
+                    //    radius: 55,
+                  ),
+                  SizedBox(
+                    height: fSizes.spaceBtwItems / 2,
+                  ),
+
+
+                  /// Text
+
+                  /// Text
+                  // fShimmerEffect(width: 55, height: 8),
+                ],
+              );
+            }));
   }
 }

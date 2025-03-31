@@ -30,7 +30,7 @@ class AllPopularApartments extends StatelessWidget {
           child: FutureBuilder(
               future: futureMethod ?? controller.fetchPopularByQuery(query),
               builder: (context, snapshot) {
-                const loader = fVerticalProductshimmer();
+                const loader = fCategoryShimmer();
                 final widget = fCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: loader);
 
                 // Return appropriate widget based  on snapshot state

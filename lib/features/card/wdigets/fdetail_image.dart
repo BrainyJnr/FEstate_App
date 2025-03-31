@@ -87,7 +87,7 @@ class DetailImage extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        festatelocation(dark: dark,
+                        festatelocation(
                           isLarge: true,
                           title: recent.location ?? "",
                         ),                        Row(

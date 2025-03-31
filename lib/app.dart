@@ -2,6 +2,7 @@ import 'package:estateapp1/common/authentication/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'common/utilis/colors.dart';
 import 'data/general_binding.dart';
 import 'features/navigation/bottom_navigation.dart';
 
@@ -17,7 +18,7 @@ class App extends StatelessWidget {
         initialBinding: GeneralBindings(),
       home: FirebaseAuth.instance.currentUser == null ?
         LoginScreen()
-          : BottomNavigation(),
-    );
+    : const Scaffold(backgroundColor: fColors.primary,body: Center(child:CircularProgressIndicator(color: Colors.white,),
+    )));
   }
 }

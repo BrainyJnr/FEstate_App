@@ -8,7 +8,6 @@ class GeneralBindings extends Bindings {
   void dependencies() {
     Get.put(NetworkManager());
     Get.put(UserRepository());
-    // Get.put(NavigationController());
     Get.put(LoginScreen());
 
 
